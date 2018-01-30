@@ -24,13 +24,13 @@ class TestSchedule(unittest.TestCase):
         self.assertFalse('NOT' in self.sch)
 
     def testStartEnd(self):
-        self.assertEqual(dt.date(2015, 1, 1),   self.sch.start)
-        self.assertEqual(dt.date(2029, 12, 27), self.sch.end)
+        self.assertEqual(dt.date(2015, 1, 1),   self.sch.start.date())
+        self.assertEqual(dt.date(2029, 12, 27), self.sch.end.date())
 
     def testTimesteps(self):
         timesteps = self.sch.timesteps
         self.assertEqual(176, len(timesteps))
-        self.assertEqual(dt.date(2015, 12, 31), timesteps[7])
+        self.assertEqual(dt.date(2015, 12, 31), timesteps[7].date())
 
     def testGroups(self):
         g1 = self.sch.group()['G1'].wells
