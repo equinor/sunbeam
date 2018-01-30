@@ -25,6 +25,7 @@ before_script:
   - export INSTALL_ROOT=$PWD/install
   - git clone https://github.com/Statoil/libecl.git
   - git clone https://github.com/OPM/opm-parser.git
+  - git clone https://github.com/pybind/pybind11.git
   - mkdir libecl/build
   - pushd libecl/build
   - cmake -DBUILD_PYTHON=OFF -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$INSTALL_ROOT ..
@@ -36,12 +37,17 @@ before_script:
   - cmake -DCMAKE_PREFIX_PATH=$INSTALL_ROOT -DCMAKE_INSTALL_PREFIX=$INSTALL_ROOT -DBUILD_TESTING=OFF -DBUILD_SHARED_LIBS=ON ..
   - make install
   - popd
+  - mkdir pybind11/build
+  - pushd pybind11/build
+  - cmake -DCMAKE_INSTALL_PREFIX=$INSTALL_ROOT -DPYTHON_EXECUTABLE=`which python` ..
+  - make install
+  - popd
   - popd
   - mkdir build
   - cd build
 
 script:
-  - cmake -DCMAKE_PREFIX_PATH=$INSTALL_ROOT -DUSE_RPATH=ON -DCMAKE_INSTALL_PREFIX=$INSTALL_ROOT ..
+  - cmake -DCMAKE_PREFIX_PATH=$INSTALL_ROOT -DUSE_RPATH=ON -DCMAKE_INSTALL_PREFIX=$INSTALL_ROOT -DPYTHON_EXECUTABLE=`which python` ..
   - make install
   - export PYTHONPATH=$PYTHONPATH:$INSTALL_ROOT/lib/python${PYTHON_VERSION}/site-packages
   - ctest --output-on-failure
