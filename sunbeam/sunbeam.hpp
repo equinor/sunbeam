@@ -1,32 +1,33 @@
 #ifndef SUNBEAM_HPP
 #define SUNBEAM_HPP
 
-#include <boost/python.hpp>
+#include <pybind11/pybind11.h>
 
-#include "converters.hpp"
+//#include "converters.hpp"
 
 namespace Opm { }
-namespace py = boost::python;
+namespace py = pybind11;
 
 using namespace Opm;
-using ref = py::return_internal_reference<>;
-using copy = py::return_value_policy< py::copy_const_reference >;
+const py::return_value_policy ref_internal = py::return_value_policy::reference_internal;
+//using copy = py::return_value_policy< py::copy_const_reference >;
+
 
 namespace sunbeam {
 
-void export_Completion();
-void export_Deck();
-void export_DeckKeyword();
-void export_Eclipse3DProperties();
-void export_EclipseConfig();
-void export_EclipseGrid();
-void export_EclipseState();
-void export_Group();
-void export_Parser();
-void export_Schedule();
-void export_TableManager();
-void export_Well();
-void export_GroupTree();
+  void export_Completion(py::module& module);
+  void export_Deck(py::module& module);
+  void export_DeckKeyword(py::module& module);
+  void export_Eclipse3DProperties(py::module& module);
+  void export_EclipseConfig(py::module& module);
+  void export_EclipseGrid(py::module& module);
+  void export_EclipseState(py::module& module);
+  void export_Group(py::module& module);
+  void export_Parser(py::module& module);
+  void export_Schedule(py::module& module);
+  void export_TableManager(py::module& module);
+  void export_Well(py::module& module);
+  void export_GroupTree(py::module& module);
 
 }
 
