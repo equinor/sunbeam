@@ -1,9 +1,11 @@
 dist: trusty
-language: python
-python:
-  - "2.7"
+language: c++
 install:
-  - pip install -r requirements.txt
+  - pip install --user -r requirements.txt
+
+env:
+  - PYTHON_VERSION="2.7"
+
 addons:
   apt:
     sources:
@@ -39,7 +41,7 @@ before_script:
   - popd
   - mkdir pybind11/build
   - pushd pybind11/build
-  - cmake -DCMAKE_INSTALL_PREFIX=$INSTALL_ROOT -DPYTHON_EXECUTABLE=`which python` ..
+  - cmake -DCMAKE_INSTALL_PREFIX=$INSTALL_ROOT ..
   - make install
   - popd
   - popd
@@ -47,7 +49,7 @@ before_script:
   - cd build
 
 script:
-  - cmake -DCMAKE_PREFIX_PATH=$INSTALL_ROOT -DUSE_RPATH=ON -DCMAKE_INSTALL_PREFIX=$INSTALL_ROOT -DPYTHON_EXECUTABLE=`which python` ..
+  - cmake -DCMAKE_PREFIX_PATH=$INSTALL_ROOT -DUSE_RPATH=ON -DCMAKE_INSTALL_PREFIX=$INSTALL_ROOT ..
   - make install
   - export PYTHONPATH=$PYTHONPATH:$INSTALL_ROOT/lib/python${PYTHON_VERSION}/site-packages
   - ctest --output-on-failure
