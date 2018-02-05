@@ -4,7 +4,8 @@ install:
   - pip install --user -r requirements.txt
 
 env:
-  - PYTHON_VERSION="2.7"
+  global:
+    - PYTHON_VERSION="2.7"
 
 addons:
   apt:
@@ -20,6 +21,7 @@ addons:
       - libgmp3-dev
       - libsuitesparse-dev
       - libeigen3-dev
+      
 before_script:
   - export PYTHON_VERSION="2.7"
   - export CXX="g++-4.8" CC="gcc-4.8" FC="gfortran-4.8"
