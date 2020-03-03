@@ -3,11 +3,11 @@
 
 # Prerequisites:
 
-Clone and build `ecl` from [Statoil/libecl](https://github.com/Statoil/libecl)
-and `opm-commonr` from [OPM/opm-common](https://github.com/OPM/opm-common).
+Clone and build `ecl` from [Equinor/libecl](https://github.com/equinor/libecl)
+and `opm-common` from [OPM/opm-common](https://github.com/OPM/opm-common).
 
 ```
-git clone https://github.com/Statoil/libecl
+git clone https://github.com/equinor/libecl
 git clone https://github.com/OPM/opm-parser
 mkdir libecl/build
 mkdir opm-common/build
@@ -24,7 +24,7 @@ make install
 Assumes you have built (and maybe installed) opm-common
 
 ```bash
-git clone --recursive https://github.com/Statoil/sunbeam
+git clone --recursive https://github.com/equinor/sunbeam
 mkdir sunbeam/build
 pushd sunbeam/build
 cmake ..
