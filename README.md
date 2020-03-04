@@ -1,5 +1,7 @@
 # sunbeam [![Build Status](https://travis-ci.org/equinor/sunbeam.svg?branch=master)](https://travis-ci.org/equinor/sunbeam)
 
+**WARNING:** Sunbeam is no longer maintained. The development of the Python
+bindings are continued in [opm-common](https://github.com/OPM/opm-common).
 
 # Prerequisites:
 
